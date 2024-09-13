@@ -1,10 +1,12 @@
+
 .hero__section {
   display: relative;
+  position: relative;
   justify-content: center;
   align-items: center;
   overflow: hidden !important;
   margin-top: 200px;
-  max-width: 1478px;
+  width: 100%;
 }
 
 #grid_image {
@@ -12,7 +14,7 @@
   height: 115px;
   position: absolute;
   z-index: -1;
-  bottom: -390px;
+  bottom: 560px;
   left: 100px
 
 }
