@@ -63,12 +63,16 @@
   padding: 20px 64px;
 }
 
-.hero__title button {
+.button {
   margin-top: 40px;
   color: #4089ED;
   border: none;
   background-color: #ffffff;
   padding: 0px 0px;
+}
+
+.button a {
+ color: #4089ED;
 }
 
 .title__description img{

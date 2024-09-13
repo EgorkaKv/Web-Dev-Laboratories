@@ -6,7 +6,7 @@
     align-items: center;
     flex-direction: column;
   padding: 140px 179px 0px;
-}
+  }
 
 .testimonials__content {
   display: flex;
@@ -17,7 +17,8 @@
   padding: 0 20px;
   background: linear-gradient(to top right, #5A98F2, #67C3F3);
   border-radius: 24px;
-  padding: 74px 146px 79px 118px;
+  padding: 74px 110px 79px 105px;
+  margin: 0 auto;
 }
 
 .testimonials__content h1 {
@@ -43,13 +44,14 @@
 }
 
 #person_info{
- margin-right: 112px;
+ margin-right: 70px;
 }
 
 #name {
   color: #FFFFFF;
   font-size: 24px;
   font-weight: 700;
+  min-width: 200px;
 }
 
 #status {

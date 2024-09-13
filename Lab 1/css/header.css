@@ -42,6 +42,10 @@
   padding: 20px 44px;
 }
 
+.header__bottom a {
+ color: #458FF6;
+}
+
 #down_arrow {
   transform: rotate(90deg);
   margin-left: 8px;
