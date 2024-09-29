@@ -1,64 +1,196 @@
 .header__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header__nav ul{
-  display: flex;
+#burger,
+[for=burger] {
+display: none;
 }
 
-.header__nav-item {
-  margin-right: 42px;
+.header__nav ul {
+    display: flex;
+    gap: 42px;
 }
 
 .header__nav-item:first-child {
-  font-weight: 700;
+    font-weight: 700;
 }
+
+.header__nav-link {
+     display: inline-block;
+        position: relative; /* Для использования псевдоэлемента */
+        color: black;
+        text-decoration: none;
+}
+
+.header__nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0; /* Изначально линия невидима */
+            height: 1px;
+            background-color: black; /* Цвет подчеркивания */
+            transition: width 0.3s ease; /* Плавный переход */
+            }
+
+.header__nav-link:hover::after {
+            width: 100%; /* Линия становится видимой */
+        }
 
 .header__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.header__bottom p {
-  margin-top: 40px;
-}
-
-.header__bottom button {
-  background-color: #FFFFFF;
-  color: #458FF6;
-  border-radius: 35px;
-  border: 2px solid #458FF6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 700;
-  margin-top: 44px;
-  padding: 20px 44px;
-}
-
-.header__bottom a {
- color: #458FF6;
-}
-
-#down_arrow {
-  transform: rotate(90deg);
-  margin-left: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 110px;
 }
 
 .header__info {
-  align-items: left;
-  width: 361px;
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.header__info img{
+    align-self: flex-start;
+}
+
+.download_button {
+    color: #458FF6;
+    border-radius: 35px;
+    border: 2px solid #458FF6;
+    align-self: flex-start;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px 24px;
+}
+
+.download_button a {
+    color: #458FF6;
+    font-size: 16px;
+    font-weight: 700;
+    padding-right: 8px;
+
+    background: linear-gradient(90deg, red, indigo, green, blue, violet, red, indigo, green, blue, violet, red);
+    background-size: 200% 100%; /* Увеличиваем ширину градиента */
+    background-clip: text;
+    -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+    color: transparent;
+    animation: rainbow 2s linear infinite; /* Делаем анимацию бесконечной */
+
+ }
+/* Анимация движения градиента */
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%; /* Начало градиента */
+    }
+    100% {
+        background-position: 100% 50%; /* Конец градиента */
+    }
+}
+
+#down_arrow {
 }
 
 #illustration {
-  width: 761px;
-  height: 503px;
+    width: 65%;
+}
+
+@media (max-width: 800px) {
+    .header__logo img {
+        width=70%;
+    }
+
+     .header__nav ul {
+        display: flex;
+        flex-direction: column; /* Выстраиваем элементы в столбик */
+        gap: 20px; /* Добавляем отступы между элементами */
+        text-align: center; /* Центрируем текст ссылок */
+    }
+
+    .header__nav ul li {
+        padding: 10px 0; /* Отступы для ссылок */
+    }
+
+    .header__nav {
+        display: none;
+        width: 80%;
+        user-select: none;
+        background-color: #fff; /* Цвет фона меню */
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+
+    [for=burger]{
+        display: block;
+        position: fixed;
+        width: 30px;
+        text-align: center;
+        left: 20px;
+        top: 10px;
+    }
+
+    [for=burger]::before {
+        content: '☰';
+    }
+
+    .header__nav {
+        display: none;
+        width: 80%;
+        user-select: none;
+    }
+
+    #burger:checked + label + nav{
+        display: block;
+        animation: show .5s ease;
+    }
+    #burger:checked +[for=burger]::before{
+        content: '⮾';
+    }
+}
+
+
+@keyframes show {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 650px) {
+    .header__info {
+        width: 100%;
+    }
+    .header__info img {
+        width: 100%;
+    }
+    .header__bottom {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .download_button {
+        align-self: center;
+    }
+    .header__top {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .header__nav {
+        display: none;
+    }
+    #illustration {
+        width: 100%;
+    }
 }
 
 

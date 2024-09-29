@@ -1,20 +1,26 @@
 body {
   font-family: "Mulish", sans-serif !important;
   font-optical-sizing: auto;
-  font-weight: <weight>;
   font-style: normal;
+  background-color: #FFFFFF;
+}
+
+.page_content {
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding-top: 50px;
 }
 
 .container {
-  max-width: 1260px;
+  max-width: 1120px;
   margin: 0 auto;
-  right: 20px;
-  left: 20px;
 }
 
 h1 {
   font-size: 40px;
   font-weight: 700;
+  margin: 0;
 }
 
 h2 {
@@ -24,7 +30,7 @@ h2 {
 }
 
 p{
-  font-size: 18x;
+  font-size: 18px;
   font-weight: 400;
   color: #7D7987;
   line-height: 1.5;
@@ -39,11 +45,31 @@ li {
   display: block;
 }
 
-button {
-  background-color: #FFFFFF;
-  color: #458FF6;
-  border-radius: 35px;
-  border: 2px solid #458FF6;
-  font-size: 16px;
-  font-weight: 700;
+.divider {
+  height: 2px;
+}
+
+.button {
+    color: #458FF6;
+    border-radius: 35px;
+    border: 2px solid #458FF6;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px 24px;
+}
+
+@media (max-width: 1170px) {
+    .container {
+        padding: 0 50px;
+    }
+}
+
+@media (max-width: 900px) {
+h1 {
+  font-size: 30px;
+  text-align: center;
+  }
+  p {
+    font-size: 16px;
+  }
 }

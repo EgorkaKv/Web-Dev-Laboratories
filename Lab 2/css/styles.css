@@ -1,7 +1,8 @@
-@import "./header.css";
-@import "./footer.css";
-@import "./hero.css";
-@import "./normalize.min.css";
 @import "./reset.min.css";
-@import "./testimonials.css";
+@import "./normalize.min.css";
 @import "./global.css";
+@import "./header.css";
+
+@import "./hero.css";
+@import "./testimonials.css";
+@import "./footer.css";
