@@ -1,0 +1,39 @@
+header {
+    display: flex;
+    gap: 30px;
+    background-color: beige;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
+
+[for=search] {
+    display: none;
+}
+
+#control {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
+
+#cards-container {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 200px;
+    background-color: lemonchiffon;
+}

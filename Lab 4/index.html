@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Bands</title>
+    <link rel="stylesheet" href="style_index.css">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="create.html">Create</a>
+    </nav>
+    <div id="control">
+        <input id="search" type="search" placeholder="Search by name...">
+        <label for="search">Search</label>
+        <button id="sortName">Sort by Name</button>
+        <button id="sortYear">Sort by Year</button>
+    </div>
+</header>
+<section>
+    <div class="container">
+        <div>
+            <p>Total Members: <span id="total-members">0</span></p>
+        </div>
+        <div id="cards-container">
+            <!-- Cards will be generated here dynamically -->
+        </div>
+    </div>
+</section>
+<script src="scripts/app.js"></script>
+</body>
+</html>
