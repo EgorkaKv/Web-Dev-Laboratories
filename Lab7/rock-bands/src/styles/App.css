@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.App {
+    display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 100% высоты окна */
+}
+
+main {
+    flex: 1; /* Занимает всё доступное пространство */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+}
+
+header .logo img {
+    width: 80px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #ddd;
+    border-radius: 50px;
+}
+
+.nav-link:hover {
+    background-color: #ccc;
+}
+
+main {
+    padding: 40px;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer .branding {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .branding img {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+}
+
+footer .social-icons a {
+    margin: 0 10px;
+}
+
+footer .social-icons img {
+    width: 30px;
+    height: auto;
+}
+
+footer p {
+    font-size: 12px;
+    color: #999;
+}
