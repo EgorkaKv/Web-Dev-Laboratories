@@ -1,0 +1,62 @@
+.form-page {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.error-box {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.error-box h4 {
+  margin: 0 0 0.5rem;
+}
+
+ul {
+  padding-left: 1rem;
+}
+
+.continue-button {
+  background-color: #343a40;
+  color: white;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.continue-button:hover {
+  background-color: #495057;
+}

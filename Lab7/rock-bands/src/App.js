@@ -8,6 +8,8 @@ import {ProductProvider} from './ProductContext';
 import ProductDetailPage from './components/ProductDetailPage/ProductDetailPage';
 import CartPage from './components/CartPage/CartPage';
 import './styles/App.css';
+import FormPage from "./components/FormPage/FormPage";
+import SuccessPage from "./components/FormPage/SuccessPage";
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
                             <Route path="/catalog" element={<CatalogPage/>}/>
                             <Route path="/product-details" element={<ProductDetailPage />} />
                             <Route path="/cart" element={<CartPage/>}/>
+                            <Route path='/form' element={<FormPage />} />
+                            <Route path='/success' element={<SuccessPage />} />
                         </Routes>
                     </main>
                     {/* Подвал остается неизменным */}

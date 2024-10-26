@@ -4,10 +4,16 @@ import CartItem from './CartItem';
 import TotalAmount from './TotalAmount';
 import { increaseQuantity, decreaseQuantity } from '../../redux/actions';
 import './CartPage.css';
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
     const cartItems = useSelector((state) => state.cart.cart); // Извлекаем корзину из стейта
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleContinue = () => {
+        navigate('/form');
+    };
 
     const handleIncrease = (id) => {
         dispatch(increaseQuantity(id));
@@ -35,7 +41,7 @@ const CartPage = () => {
             <TotalAmount total={totalAmount} />
             <div className="cart-buttons">
                 <button className="back-button">Back to Catalog</button>
-                <button className="continue-button">Continue</button>
+                <button className="continue-button" onClick={handleContinue}>Continue</button>
             </div>
         </div>
     );
