@@ -8,7 +8,7 @@ const HeroSection = () => {
         <img src={headingImage} alt="Placeholder" />
       </div>
       <div className="hero-text">
-        <h1>Rock Bands</h1>
+        <h1>Clothes from Egor</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat.</p>
       </div>
     </section>

@@ -1,4 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
+import jeans from './images/tile_1.webp';
+import jacket from './images/tile_2.jfif';
+import shirt from './images/tile_3.jfif';
+import sneakers from './images/tile_4.jfif';
 
 
 // Создаем контекст
@@ -23,7 +27,7 @@ export const ProductProvider = ({ children }) => {
             color: 'red',
             size: 'M',
             country: 'Canada',
-            image: 'placeholder1.png'
+            image: jacket
         },
         {
             itemNumber: 'Item 2',
@@ -33,7 +37,7 @@ export const ProductProvider = ({ children }) => {
             color: 'blue',
             size: 'S',
             country: 'England',
-            image: 'placeholder2.png'
+            image: shirt
         },
         {
             itemNumber: 'Item 3',
@@ -43,7 +47,7 @@ export const ProductProvider = ({ children }) => {
             color: 'black',
             size: 'S',
             country: 'USA',
-            image: 'placeholder3.png'
+            image: sneakers
         },
         {
             itemNumber: 'Item 4',
@@ -53,7 +57,7 @@ export const ProductProvider = ({ children }) => {
             color: 'blue',
             size: 'L',
             country: 'England',
-            image: 'placeholder4.png'
+            image: jeans
         }
         ]
     );
