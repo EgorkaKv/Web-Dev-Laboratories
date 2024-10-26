@@ -6,6 +6,7 @@ import CatalogPage from './components/CatalogPage/CatalogPage';
 import Footer from './components/Footer';
 import {ProductProvider} from './ProductContext';
 import ProductDetailPage from './components/ProductDetailPage/ProductDetailPage';
+import CartPage from './components/CartPage/CartPage';
 import './styles/App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                             <Route path="/" element={<HomePage/>}/>
                             <Route path="/catalog" element={<CatalogPage/>}/>
                             <Route path="/product-details" element={<ProductDetailPage />} />
+                            <Route path="/cart" element={<CartPage/>}/>
                         </Routes>
                     </main>
                     {/* Подвал остается неизменным */}

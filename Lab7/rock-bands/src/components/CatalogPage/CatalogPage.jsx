@@ -27,6 +27,7 @@ const CatalogPage = () => {
         setIsLoading(true);
         try {
             const data = await fetchProducts({ ...appliedFilters, search: appliedSearchTerm });
+             console.log(data)
             setProducts(data);
         } catch (error) {
             console.error("Failed to fetch products:", error);

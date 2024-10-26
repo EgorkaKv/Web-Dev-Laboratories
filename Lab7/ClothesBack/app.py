@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     itemNumber = db.Column(db.String(10), nullable=False)
     title = db.Column(db.String(40), nullable=False)
     description = db.Column(db.String(100), nullable=False)
