@@ -1,0 +1,88 @@
+/* Filters */
+.filters {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.filters select, .filters button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Tiles Section */
+.tiles-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tile {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 22%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.tile img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.tile h2 {
+    font-size: 1.5em;
+    margin: 15px 0;
+}
+
+.tile p {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.price {
+    font-size: 1.2em;
+    margin: 15px 0;
+}
+
+.view-more {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    align-items: center;
+}
+
+.branding p {
+    margin: 0;
+}
+
+.footer-logo img {
+    width: 100px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    font-size: 1.5em;
+    color: black;
+}
