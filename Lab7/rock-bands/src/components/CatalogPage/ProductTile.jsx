@@ -8,7 +8,7 @@ const ProductTile = ({ product }) => {
     const handleViewMore = () => {
         navigate('/product-details', { state: { product } });  // Передаем объект product через state
     };
-    console.log(product.image)
+    //console.log(product.image)
     return (
         <div className="tile">
             <span className="item-number">{product.itemNumber}</span>
