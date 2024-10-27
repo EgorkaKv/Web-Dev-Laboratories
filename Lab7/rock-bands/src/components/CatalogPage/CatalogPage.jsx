@@ -3,7 +3,7 @@ import Select from './Select';
 import PrimaryButton from './PrimaryButton';
 import ProductList from './ProductList';
 import Loader from './Loader';
-import { fetchProducts } from '../../api';
+import { fetchProducts } from '../../services/api';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
