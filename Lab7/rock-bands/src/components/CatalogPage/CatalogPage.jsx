@@ -3,7 +3,7 @@ import Select from './Select';
 import PrimaryButton from './PrimaryButton';
 import ProductList from './ProductList';
 import Loader from './Loader';
-import { fetchProducts } from '../../api';
+import { fetchProducts } from '../../services/api';
 import './CatalogPage.css';
 
 const CatalogPage = () => {
@@ -27,6 +27,7 @@ const CatalogPage = () => {
         setIsLoading(true);
         try {
             const data = await fetchProducts({ ...appliedFilters, search: appliedSearchTerm });
+             console.log(data)
             setProducts(data);
         } catch (error) {
             console.error("Failed to fetch products:", error);

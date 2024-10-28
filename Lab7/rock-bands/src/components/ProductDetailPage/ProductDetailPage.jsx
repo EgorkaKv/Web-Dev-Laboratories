@@ -10,7 +10,8 @@ import './ProductDetailPage.css';
 
 const ProductDetailPage = () => {
     const location = useLocation();
-    const { product } = location.state || {};  // Получаем данные продукта из state
+    const { product } = location.state || {};
+
 
     if (!product) {
         return <div>No product data available</div>;
@@ -22,9 +23,12 @@ const ProductDetailPage = () => {
             <div className="product-info">
                 <ProductInfo title={product.title} description={product.description} />
                 <ProductCharacteristics char1={product.color} char2={product.country} />
-                <ProductFields /> {/* Случайные данные для ProductFields */}
+                <ProductFields />
                 <ProductPrice price={product.price} />
-                <ProductButtons />
+                <div className="product-buttons">
+                    <button className="go-back-btn">Go back</button>
+                    <ProductButtons product={product} />
+                </div>
             </div>
         </div>
     );
