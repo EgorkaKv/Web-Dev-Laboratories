@@ -45,7 +45,6 @@ const LoginPage = () => {
                 />
                 <button type="submit">LOGIN ME</button>
             </form>
-            {error && <div className="error-message">{error}</div>} {/* Отображение сообщения об ошибке */}
             <p>
                 Not a member? <Link to="/signup">Sign up</Link>
             </p>

@@ -48,11 +48,16 @@ const cartReducer = createReducer(initialState, (builder) => {
             );
 
             if (existingProductIndex !== -1) {
-                state.cart[existingProductIndex].quantity += quantity;
+                state.cart[existingProductIndex].quantity += quantity; // Увеличиваем или уменьшаем количество
+                if (state.cart[existingProductIndex].quantity <= 0) {
+                    // Если количество 0 или меньше, удаляем товар
+                    state.cart.splice(existingProductIndex, 1);
+                }
             } else {
                 state.cart.push({ ...action.meta.arg, quantity });
             }
         });
 });
+
 
 export default cartReducer;

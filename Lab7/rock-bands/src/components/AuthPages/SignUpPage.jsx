@@ -9,6 +9,7 @@ const RegisterPage = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -21,9 +22,24 @@ const RegisterPage = () => {
         }
     }, [isAuthenticated, navigate]);
 
+    const handleEmailChange = (e) => {
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+
+        // Проверка регулярным выражением на "@" и домен
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailRegex.test(emailValue)) {
+            setEmailError("Некоректний формат email. Переконайтеся, що вказано знак '@' і коректний домен.");
+        } else {
+            setEmailError('');
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(register({ username, email, password }));
+        if (!emailError) {
+            dispatch(register({ username, email, password }));
+        }
     };
 
     return (
@@ -41,9 +57,10 @@ const RegisterPage = () => {
                     type="email"
                     placeholder="E-mail"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleEmailChange}
                     required
                 />
+                {emailError && <p className="error-text">{emailError}</p>}
                 <input
                     type="password"
                     placeholder="Password"
@@ -58,7 +75,6 @@ const RegisterPage = () => {
                 />
                 <button type="submit">SIGN ME UP</button>
             </form>
-            {error && <div className="error-message">{error}</div>} {/* Отображение сообщения об ошибке */}
             <p>
                 Already a member? <Link to="/login">Sign in</Link>
             </p>
