@@ -25,13 +25,10 @@ const authSlice = createSlice({
             state.error = null;
             localStorage.removeItem('token');
         },
-        clearError: (state) => {
-            state.error = null; // Сбрасываем ошибку вручную
-        },
     },
 });
 
-export const { loginSuccess, loginFailure, logoutSuccess, clearError } = authSlice.actions;
+export const { loginSuccess, loginFailure, logoutSuccess } = authSlice.actions;
 
 export const login = (credentials) => async (dispatch) => {
     const response = await AuthService.login(credentials);

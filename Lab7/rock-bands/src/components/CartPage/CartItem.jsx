@@ -12,7 +12,6 @@ const CartItem = ({ item, onIncrease, onDecrease }) => {
                     onIncrease={onIncrease}
                     onDecrease={onDecrease}
                 />
-                <p>Размер: {item.size}</p>
                 <p className="cart-item-price">${item.price * item.quantity}</p>
             </div>
         </div>

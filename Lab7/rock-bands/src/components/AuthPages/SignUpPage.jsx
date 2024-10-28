@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { register, clearError } from '../../redux/authSlice';
+import { register } from '../../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 import { Link } from "react-router-dom";
@@ -17,10 +17,9 @@ const RegisterPage = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            dispatch(clearError()); // Сброс ошибки при успешной регистрации
-            navigate('/login');
+            navigate('/login'); // Перенаправление на страницу login после успешной регистрации
         }
-    }, [isAuthenticated, navigate, dispatch]);
+    }, [isAuthenticated, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
