@@ -7,7 +7,7 @@ import './CartPage.css';
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
-    const cartItems = useSelector((state) => state.cart.cart); // Извлекаем корзину из стейта
+    const cartItems = useSelector((state) => state.cart.cart || []); // Убедимся, что cart всегда массив
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -15,28 +15,35 @@ const CartPage = () => {
         navigate('/form');
     };
 
-    const handleIncrease = (id) => {
-        dispatch(increaseQuantity(id));
+    const handleIncrease = (itemNumber) => {
+        dispatch(increaseQuantity(itemNumber));
     };
 
-    const handleDecrease = (id) => {
-        dispatch(decreaseQuantity(id));
+    const handleDecrease = (itemNumber) => {
+        dispatch(decreaseQuantity(itemNumber));
     };
 
-    const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    // Если cartItems пустой, totalAmount будет равен 0
+    const totalAmount = cartItems.length > 0
+        ? cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        : 0;
 
     return (
         <div className="cart-page">
             <h1 className="cart-title">Shopping Cart</h1>
             <div className="cart-items">
-                {cartItems.map(item => (
-                    <CartItem
-                        key={item.itemNumber}  // Уникальный ключ для каждого товара
-                        item={item}
-                        onIncrease={() => handleIncrease(item.itemNumber)}
-                        onDecrease={() => handleDecrease(item.itemNumber)}
-                    />
-                ))}
+                {cartItems.length > 0 ? (
+                    cartItems.map((item) => (
+                        <CartItem
+                            key={item.itemNumber}
+                            item={item}
+                            onIncrease={() => handleIncrease(item.itemNumber)}
+                            onDecrease={() => handleDecrease(item.itemNumber)}
+                        />
+                    ))
+                ) : (
+                    <p>Ваша корзина пуста</p>
+                )}
             </div>
             <TotalAmount total={totalAmount} />
             <div className="cart-buttons">

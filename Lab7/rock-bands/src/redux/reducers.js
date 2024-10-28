@@ -1,40 +1,87 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { addToCart, increaseQuantity, decreaseQuantity } from './actions';
+import {
+  ADD_TO_CART,
+  LOAD_CART,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY,
+  UPDATE_ITEM_QUANTITY
+} from './types';
 
 const initialState = {
-    cart: []
+  cart: [],
 };
 
-const cartReducer = createReducer(initialState, (builder) => {
-    builder
-        .addCase(addToCart, (state, action) => {
-            const existingProductIndex = state.cart.findIndex(item => item.itemNumber === action.payload.itemNumber);
-            console.log('findindex', existingProductIndex);
-            console.log('input id', action.payload.itemNumber);
+export const cartReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOAD_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      };
 
-            if (existingProductIndex !== -1) {
-                // Если товар уже есть в корзине, увеличиваем его количество
-                console.log('уже в корзине',existingProductIndex);
-                state.cart[existingProductIndex].quantity += 1;
-            } else {
-                // Если товара нет в корзине, добавляем его как новый объект
-                console.log('нет в корзине',action.payload);
-                state.cart.push({ ...action.payload, quantity: 1 });
-            }
-            console.log('cart',state.cart);
-        })
-        .addCase(increaseQuantity, (state, action) => {
-            const product = state.cart.find(item => item.itemNumber === action.payload);
-            if (product) {
-                product.quantity += 1;
-            }
-        })
-        .addCase(decreaseQuantity, (state, action) => {
-            const product = state.cart.find(item => item.itemNumber === action.payload);
-            if (product && product.quantity > 1) {
-                product.quantity -= 1;
-            }
-        });
-});
+    case ADD_TO_CART:
+      const existingItem = state.cart.find(
+        (item) =>
+          item.itemNumber === action.payload.itemNumber &&
+          item.size === action.payload.size
+      );
+
+      if (existingItem) {
+        return {
+          ...state,
+          cart: state.cart.map((item) =>
+            item.itemNumber === action.payload.itemNumber &&
+            item.size === action.payload.size
+              ? {
+                  ...item,
+                  quantity:
+                    item.quantity + action.payload.quantity <= item.max_quantity
+                      ? item.quantity + action.payload.quantity
+                      : item.max_quantity,
+                }
+              : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cart: [...state.cart, action.payload],
+        };
+      }
+
+    case INCREASE_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.itemNumber === action.payload &&
+          item.quantity < item.max_quantity
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+
+    case DECREASE_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.itemNumber === action.payload && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
+      };
+
+    case UPDATE_ITEM_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.itemNumber === action.payload.itemNumber
+            ? { ...item, quantity: action.payload.quantity }
+            : item
+        ),
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default cartReducer;

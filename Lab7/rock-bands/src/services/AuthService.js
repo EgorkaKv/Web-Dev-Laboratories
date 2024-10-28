@@ -15,12 +15,14 @@ const login = async (credentials) => {
 };
 
 const register = async (credentials) => {
-    console.log('credentials_reg', credentials);
     try {
         const response = await axios.post(`${API_URL}/register`, credentials);
+        console.log('successful_reg', response.data);
         return response.data;
     } catch (error) {
+        console.log('error_reg', error.response?.data);
         console.error('Registration failed:', error);
+        return { error: error.response?.data || "Registration failed" }; // Возвращаем ошибку для корректной обработки
     }
 };
 
