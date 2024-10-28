@@ -2,9 +2,11 @@ import React from 'react';
 import QuantityControl from './QuantityControl';
 
 const CartItem = ({ item, onIncrease, onDecrease }) => {
+    console.log("CartItem -> item", item);
+    console.log("item image", item.image);
     return (
         <div className="cart-item">
-            <img src={item.image} alt={item.title} className="cart-item-image" />
+            <div className="size">{item.size}</div>
             <div className="cart-item-details">
                 <h2 className="cart-item-title">{item.title}</h2>
                 <QuantityControl
