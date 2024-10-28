@@ -8,11 +8,11 @@ const ProductTile = ({ product }) => {
     const handleViewMore = () => {
         navigate('/product-details', { state: { product } });  // Передаем объект product через state
     };
-    console.log(product.image)
+    //console.log(product.image)
     return (
         <div className="tile">
             <span className="item-number">{product.itemNumber}</span>
-            <img src={product.image} alt="Product Image" />
+            <img src= {process.env.PUBLIC_URL + product.image} alt="Product Image" />
             <h2>{product.title}</h2>
             <p>{product.description}</p>
             <p className="price">Price: <strong>{product.price}</strong></p>

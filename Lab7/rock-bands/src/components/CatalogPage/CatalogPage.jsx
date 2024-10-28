@@ -2,64 +2,67 @@ import React, { useState, useEffect } from 'react';
 import Select from './Select';
 import PrimaryButton from './PrimaryButton';
 import ProductList from './ProductList';
+import Loader from './Loader';
+import { fetchProducts } from '../../services/api';
 import './CatalogPage.css';
-import { useProducts } from '../../ProductContext';
 
 const CatalogPage = () => {
-    const { products } = useProducts();
-
-    // Состояния для строки поиска и фильтров
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredProducts, setFilteredProducts] = useState(products);
-    const [selectedColor, setSelectedColor] = useState('All Colors');
-    const [selectedSize, setSelectedSize] = useState('All Sizes');
-    const [selectedCountry, setSelectedCountry] = useState('All Countries');
+    const [filters, setFilters] = useState({
+        color: '',
+        size: '',
+        country: '',
+    });
+    const [appliedFilters, setAppliedFilters] = useState({
+        color: '',
+        size: '',
+        country: '',
+    });
+    const [appliedSearchTerm, setAppliedSearchTerm] = useState('');
 
-    // Обработчик изменения строки поиска
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
+    // Функция для загрузки продуктов
+    const loadProducts = async () => {
+        setIsLoading(true);
+        try {
+            const data = await fetchProducts({ ...appliedFilters, search: appliedSearchTerm });
+             console.log(data)
+            setProducts(data);
+        } catch (error) {
+            console.error("Failed to fetch products:", error);
+        } finally {
+            setTimeout(() => setIsLoading(false), 1000); // Длительная загрузка (2 сек)
+        }
     };
 
-    // Применение поиска при каждом вводе буквы
+    // Загрузка данных при первом рендере и изменении фильтров или строки поиска
     useEffect(() => {
-        const lowercasedSearchTerm = searchTerm.toLowerCase();
-        const searchedProducts = products.filter(product =>
-            product.title.toLowerCase().includes(lowercasedSearchTerm)
-        );
-        setFilteredProducts(searchedProducts);
-    }, [searchTerm, products]);
+        loadProducts();
+    }, [appliedFilters, appliedSearchTerm]);
 
-    // Обработчики изменения фильтров
-    const handleColorChange = (e) => setSelectedColor(e.target.value);
-    const handleSizeChange = (e) => setSelectedSize(e.target.value);
-    const handleCountryChange = (e) => setSelectedCountry(e.target.value);
+    // Обработчики для фильтров
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [name]: value,
+        }));
+    };
 
-    // Применение фильтров по нажатию на "Apply"
-    const applyFilters = () => {
-        let filtered = products;
+    // Обработчик строки поиска
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
+    };
 
-        // Фильтрация по цвету
-        if (selectedColor !== 'All Colors') {
-            filtered = filtered.filter(product => product.color === selectedColor);
-        }
-
-        // Фильтрация по размеру
-        if (selectedSize !== 'All Sizes') {
-            filtered = filtered.filter(product => product.size === selectedSize);
-        }
-
-        // Фильтрация по стране
-        if (selectedCountry !== 'All Countries') {
-            filtered = filtered.filter(product => product.country === selectedCountry);
-        }
-
-        // Устанавливаем отфильтрованные продукты
-        setFilteredProducts(filtered);
+    // Обработчик кнопки "Apply"
+    const handleApplyFilters = () => {
+        setAppliedFilters(filters);
+        setAppliedSearchTerm(searchTerm);
     };
 
     return (
         <div>
-            {/* Строка поиска */}
             <section className="search-section">
                 <input
                     type="text"
@@ -69,16 +72,18 @@ const CatalogPage = () => {
                 />
             </section>
 
-            {/* Секция фильтров */}
             <section className="filter-section">
-                <Select options={['All Colors', 'black', 'blue']} value={selectedColor} onChange={handleColorChange} />
-                <Select options={['All Sizes', 'S', 'L']} value={selectedSize} onChange={handleSizeChange} />
-                <Select options={['All Countries', 'USA', 'England']} value={selectedCountry} onChange={handleCountryChange} />
-                <PrimaryButton onClick={applyFilters}>Apply</PrimaryButton>
+                <Select name="color" options={['All Colors', 'black', 'blue']} value={filters.color} onChange={handleFilterChange} />
+                <Select name="size" options={['All Sizes', 'S', 'L']} value={filters.size} onChange={handleFilterChange} />
+                <Select name="country" options={['All Countries', 'USA', 'England']} value={filters.country} onChange={handleFilterChange} />
+                <PrimaryButton onClick={handleApplyFilters}>Apply</PrimaryButton>
             </section>
 
-            {/* Список продуктов: показываем отфильтрованные продукты */}
-            <ProductList products={filteredProducts} />
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <ProductList products={products} />
+            )}
         </div>
     );
 };

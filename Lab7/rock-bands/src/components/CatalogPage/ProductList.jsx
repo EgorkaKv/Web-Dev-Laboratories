@@ -4,7 +4,7 @@ import { useProducts } from '../../ProductContext'; // Импортируем х
 
 const ProductList = ({products}) => {
      // Получаем данные продуктов из контекста
-console.log(products);
+//console.log(products);
     return (
         <section className="tiles-section">
             {products.map((product, index) => (
